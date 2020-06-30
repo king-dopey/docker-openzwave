@@ -23,7 +23,7 @@ ENV			DEBIAN_FRONTEND	noninteractive
 RUN			apt-get -y update && apt-get -y install \
 				apt-transport-https \
 				g++ \
-				python-all python-dev python-pip \
+				python-all python-dev \
 				libbz2-dev \
 				libssl-dev \
 				libudev-dev \
@@ -37,6 +37,8 @@ RUN			apt-get -y update && apt-get -y install \
 				gnutls-bin libgnutls28-dev \
 				pkg-config && \
 				apt-get clean
+RUN		wget https://bootstrap.pypa.io/get-pip.py && \
+			python2 get-pip.py
 
 RUN 		pip install 'Louie<2.0' six 'urwid>=1.1.1' pyserial
 
