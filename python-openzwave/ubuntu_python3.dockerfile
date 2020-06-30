@@ -41,8 +41,8 @@ RUN			apt-get -y update && apt-get -y install \
 RUN 		pip3 install 'PyDispatcher>=2.0.5' six 'urwid>=1.1.1' pyserial
 
 ################################################################################
-# Install python_openzwave with embed sources as a shared module
-RUN			pip3 install python_openzwave --install-option="--flavor=embed_shared"
+# Install python_openzwave with embed sources, shared module fails
+RUN			pip3 install python_openzwave
 
 ################################################################################
 # Install open-zwave-controlpanel

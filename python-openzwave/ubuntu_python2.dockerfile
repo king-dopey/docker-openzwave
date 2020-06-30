@@ -43,8 +43,8 @@ RUN		wget https://bootstrap.pypa.io/get-pip.py && \
 RUN 		pip install 'Louie<2.0' six 'urwid>=1.1.1' pyserial
 
 ################################################################################
-# Install python_openzwave with embed sources as a shared module
-RUN			pip install python_openzwave --install-option="--flavor=embed_shared"
+# Install python_openzwave with embed sources, shared module fails
+RUN			pip install python_openzwave
 
 ################################################################################
 # Install open-zwave-controlpanel
