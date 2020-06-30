@@ -33,8 +33,7 @@ RUN			apt-get -y update && apt-get -y install \
 				wget \
 				sudo \
 				zlib1g-dev \
-				libmicrohttpd \
-				libmicrohttpd-dev \
+				libmicrohttpd libmicrohttpd-dev \
 				gnutls-bin libgnutls28 libgnutls28-dev \
 				pkg-config && \
 				apt-get clean
@@ -59,9 +58,9 @@ RUN git clone https://github.com/OpenZWave/open-zwave-control-panel.git
 
 WORKDIR /usr/local/src/open-zwave-control-panel
 
-RUN make && make dist
+RUN make
 
-RUN cp ozwcp.tar.gz /opt && cd /opt && tar jxf ozwcp.tar.gz
+RUN mkdir -p /opt/ozwcp && cp -r ozwcp config/ cp.html cp.js openzwavetinyicon.png README /opt/ozwcp
 
 RUN ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp
 
