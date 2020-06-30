@@ -38,7 +38,7 @@ RUN apt -y update && apt dist-upgrade -y && apt -y install \
 
 #Install pip from bootstrap
 wget https://bootstrap.pypa.io/get-pip.py && \
-			python2 get-pip.py
+			python2 get-pip.py && \
 
 #Clean up	
 apt autoremove -y && apt clean && \
