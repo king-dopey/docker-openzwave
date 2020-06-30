@@ -66,7 +66,7 @@ RUN ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp
 
 ################################################################################
 # Clean up
-RUN rm -rf /usr/local/src/ && rm /opt/ozwcp.tar.gz \
+RUN rm -rf /usr/local/src/ && \
 	apt remove libgnutls28-dev libmicrohttpd-dev -y && \
 	apt autoremove -y && apt clean
 
