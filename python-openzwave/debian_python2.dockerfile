@@ -38,7 +38,7 @@ RUN			apt-get -y update && apt-get -y install \
 				pkg-config && \
 				apt-get clean
 
-RUN 		pip install 'Louie>=1.1' six 'urwid>=1.1.1'
+RUN 		pip install 'Louie<2.0' six 'urwid>=1.1.1'
 
 ################################################################################
 # Install python_openzwave with embed sources as a shared module
