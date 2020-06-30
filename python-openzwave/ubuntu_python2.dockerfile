@@ -6,69 +6,71 @@
 FROM		ubuntu:latest
 MAINTAINER	bibi21000 <bibi21000@gmail.com>
 
-################################################################################
+###############################################################################
 #Add user
 USER		root
 
-RUN adduser ozw_user
-RUN usermod -a -G dialout ozw_user
-RUN usermod -a -G games ozw_user
+RUN adduser ozw_user && \
+	usermod -a -G dialout ozw_user && \
+	usermod -a -G games ozw_user && \
 
-RUN mkdir -p /usr/local/src/
+mkdir -p /usr/local/src/
 
 ################################################################################
 # Initial prerequisites
-USER		root
-ENV			DEBIAN_FRONTEND	noninteractive
-RUN			apt-get -y update && apt-get -y install \
-				apt-transport-https \
-				g++ \
-				python-all python-dev \
-				libbz2-dev \
-				libssl-dev \
-				libudev-dev \
-				libyaml-dev \
-				make \
-				git \
-				wget \
-				sudo \
-				zlib1g-dev \
-				libmicrohttpd-dev \
-				gnutls-bin libgnutls28-dev \
-				pkg-config
-RUN		wget https://bootstrap.pypa.io/get-pip.py && \
+ENV DEBIAN_FRONTEND	noninteractive
+RUN apt -y update && apt dist-upgrade -y && apt -y install \
+	apt-transport-https \
+	g++ \
+	python-all python-dev \
+	libbz2-dev \
+	libssl-dev \
+	libudev-dev \
+	libyaml-dev \
+	make \
+	git \
+	wget \
+	sudo \
+	zlib1g-dev \
+	libmicrohttpd-dev \
+	gnutls-bin libgnutls28-dev \
+	pkg-config && \
+
+#Install pip from bootstrap
+wget https://bootstrap.pypa.io/get-pip.py && \
 			python2 get-pip.py
 
-RUN 		pip install 'Louie<2.0' six 'urwid>=1.1.1' pyserial
+#Clean up	
+apt autoremove -y && apt clean && \
+
+#Install deps from pip
+pip install 'Louie<2.0' six 'urwid>=1.1.1' pyserial
 
 ################################################################################
 # Install python_openzwave with embed sources, shared module fails
-RUN			pip install python_openzwave
+RUN pip install python_openzwave
 
 ################################################################################
 # Install open-zwave-controlpanel
-USER		root
 
 WORKDIR	/usr/local/src/
 
 RUN git clone --depth 1 https://github.com/OpenZWave/open-zwave && \
 	cd open-zwave && \
-	make
+	make && \
+	cd .. && \
 
-RUN git clone https://github.com/OpenZWave/open-zwave-control-panel.git
+git clone https://github.com/OpenZWave/open-zwave-control-panel.git && \
+	cd open-zwave-control-panel && \
+	make && \
 
-WORKDIR /usr/local/src/open-zwave-control-panel
-
-RUN make
-
-RUN mkdir -p /opt/ozwcp && cp -r ozwcp config/ cp.html cp.js openzwavetinyicon.png README /opt/ozwcp
-
-RUN ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp
+#Install
+mkdir -p /opt/ozwcp && cp -r ozwcp ../open-zwave/config/ cp.html cp.js openzwavetinyicon.png README /opt/ozwcp && \
+ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 
 ################################################################################
 # Clean up
-RUN rm -rf /usr/local/src/ && \
-	apt autoremove -y && apt clean
+rm -rf /usr/local/src/
 
 ################################################################################
 USER ozw_user
