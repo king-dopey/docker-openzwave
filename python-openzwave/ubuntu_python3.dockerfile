@@ -50,17 +50,25 @@ USER		root
 
 WORKDIR	/usr/local/src/
 
+RUN git clone --depth 1 https://github.com/OpenZWave/open-zwave && \
+	cd open-zwave && \
+	make
+
 RUN git clone https://github.com/OpenZWave/open-zwave-control-panel.git
 
 WORKDIR /usr/local/src/open-zwave-control-panel
 
-COPY /files/Makefile.ozwcp /usr/local/src/open-zwave-control-panel/Makefile
-ADD https://raw.githubusercontent.com/OpenZWave/open-zwave/master/cpp/tinyxml/tinyxml.h /usr/local/src/open-zwave-control-panel/
-ADD https://raw.githubusercontent.com/OpenZWave/open-zwave/master/cpp/tinyxml/tinystr.h /usr/local/src/open-zwave-control-panel/
+RUN make && make dist
 
-RUN make
+RUN cp ozwcp.tar.gz /opt && cd /opt && tar jxf ozwcp.tar.gz
 
-RUN ln -s /usr/local/bin/open-zwave-control-panel/ozwcp /usr/local/bin/ozwcp
+RUN ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp
+
+################################################################################
+# Clean up
+RUN rm -rf /usr/local/src/ && rm /opt/ozwcp.tar.gz \
+	apt remove libgnutls28-dev libmicrohttpd-dev -y && \
+	apt autoremove -y && apt clean
 
 ################################################################################
 USER ozw_user
