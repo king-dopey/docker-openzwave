@@ -33,10 +33,9 @@ RUN			apt-get -y update && apt-get -y install \
 				wget \
 				sudo \
 				zlib1g-dev \
-				libmicrohttpd libmicrohttpd-dev \
-				gnutls-bin libgnutls28 libgnutls28-dev \
-				pkg-config && \
-				apt-get clean
+				libmicrohttpd-dev \
+				gnutls-bin libgnutls28-dev \
+				pkg-config
 
 RUN 		pip3 install 'PyDispatcher>=2.0.5' six 'urwid>=1.1.1' pyserial
 
@@ -67,7 +66,6 @@ RUN ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp
 ################################################################################
 # Clean up
 RUN rm -rf /usr/local/src/ && \
-	apt remove libgnutls28-dev libmicrohttpd-dev -y && \
 	apt autoremove -y && apt clean
 
 ################################################################################
