@@ -50,8 +50,12 @@ git clone https://github.com/OpenZWave/open-zwave-control-panel.git && \
 	make && \
 
 #Install
-mkdir -p /opt/ozwcp && cp -r ozwcp ../open-zwave/config/ cp.html cp.js openzwavetinyicon.png README /opt/ozwcp && \
+mkdir -p /opt/ozwcp && cp ozwcp cp.html cp.js openzwavetinyicon.png README /opt/ozwcp && \
+cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
+ln -s /etc/openzwave /opt/ozwcp/config && \
+rm -rf /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
+ln -s /etc/openzwave /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
 
 ################################################################################
 # Clean up
