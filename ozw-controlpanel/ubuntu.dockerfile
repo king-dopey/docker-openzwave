@@ -56,7 +56,7 @@ ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ################################################################################
 # Clean up
 rm -rf /usr/local/src/ && \
-apt remove git wget g++ pkg-config -y && apt autoremove -y && apt clean
+apt remove make git wget g++ pkg-config -y && apt autoremove -y && apt clean
 
 ################################################################################
 USER ozw_user
@@ -64,4 +64,5 @@ RUN mkdir -p $HOME/user_config
 WORKDIR		$HOME/user_config
 VOLUME		$HOME/user_config
 EXPOSE 8008
-ENTRYPOINT [ "/bin/bash", "/usr/local/bin/ozwcp", "-p 8008"]
+ENTRYPOINT [ "/bin/bash" ]
+CMD ["/usr/local/bin/ozwcp", "-p 8008", "-c /opt/ozwcp/config"]

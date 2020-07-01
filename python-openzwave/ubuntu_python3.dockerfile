@@ -74,4 +74,5 @@ RUN mkdir -p $HOME/user_config
 WORKDIR		$HOME/user_config
 VOLUME		$HOME/user_config
 EXPOSE 8008
-ENTRYPOINT [ "/bin/bash", "/usr/local/bin/ozwcp", "/usr/local/bin/pyozw_check", "/usr/local/bin/pyozw_shell", "-p 8008"]
+ENTRYPOINT [ "/bin/bash" ]
+CMD ["/usr/local/bin/ozwcp", "-p 8008", "-c /opt/ozwcp/config"]
