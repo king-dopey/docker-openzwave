@@ -38,9 +38,9 @@ RUN apt -y update && apt dist-upgrade -y && apt -y install \
 ################################################################################
 # Install open-zwave-controlpanel
 
-WORKDIR	/usr/local/src/
+cd /usr/local/src/ && \
 
-RUN git clone --depth 1 https://github.com/OpenZWave/open-zwave && \
+git clone --depth 1 https://github.com/OpenZWave/open-zwave && \
 	cd open-zwave && \
 	make && \
 	cd .. && \
