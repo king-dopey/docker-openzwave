@@ -73,10 +73,9 @@ ln -s /etc/openzwave /usr/local/lib/python3.8/site-packages/python_openzwave/ozw
 # Clean up
 rm -rf /usr/local/src/
 
-################################################################################
-USER ozw_user
-RUN mkdir -p $HOME/user_config
-WORKDIR		$HOME/user_config
-VOLUME		$HOME/user_config
+###########################################################
+
+WORKDIR /opt/ozwcp/
+VOLUME /etc/openzwave
 EXPOSE 8008
 CMD ["/opt/ozwcp/ozwcp", "-p 8008", "-c /opt/ozwcp/config"]

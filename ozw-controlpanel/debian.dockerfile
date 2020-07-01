@@ -54,8 +54,6 @@ mkdir -p /opt/ozwcp && cp ozwcp cp.html cp.js openzwavetinyicon.png README /opt/
 cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
-rm -rf /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
-ln -s /etc/openzwave /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
 
 ################################################################################
 # Clean up
@@ -64,8 +62,8 @@ apt remove make git wget g++ pkg-config -y && apt autoremove -y && apt clean
 
 ################################################################################
 USER ozw_user
-RUN mkdir -p $HOME/user_config
-WORKDIR		$HOME/user_config
-VOLUME		$HOME/user_config
+
+WORKDIR /opt/ozwcp/
+VOLUME /etc/openzwave
 EXPOSE 8008
 CMD ["/opt/ozwcp/ozwcp", "-p 8008", "-c /opt/ozwcp/config"]
