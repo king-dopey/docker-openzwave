@@ -67,7 +67,7 @@ cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
 rm -rf /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
-ln -s /etc/openzwave /usr/local/lib/python3.8/dist-packages/python_openzwave/ozw_config && \
+ln -s /etc/openzwave /usr/local/lib/python3.7/dist-packages/python_openzwave/ozw_config && \
 ##########################################################################################
 # Clean up
 rm -rf /usr/local/src/ && \

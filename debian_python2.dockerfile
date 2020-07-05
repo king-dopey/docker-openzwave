@@ -62,7 +62,7 @@ git clone https://github.com/OpenZWave/open-zwave-control-panel.git && \
 	cd open-zwave-control-panel && \
 	make && \
 #Install
-cp.js openzwavetinyicon.png README /opt/ozwcp && \
+cp ozwcp cp.html openzwavetinyicon.png README /opt/ozwcp && \
 cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
