@@ -7,8 +7,6 @@ FROM debian:latest
 
 label maitainer='bibi21000 <bibi21000@gmail.com>; David Heaps <king.dopey.10111@gmail.com>'
 
-VOLUME /etc/openzwave
-
 ENV CONFIG /etc/openzwave
 ENV DEBIAN_FRONTEND noninteractive
 ENV PORT 8008
@@ -66,6 +64,4 @@ apt remove make git wget g++ pkg-config -y && apt autoremove -y && apt clean
 
 ###########################################################################################
 WORKDIR /opt/ozwcp/
-VOLUME /etc/openzwave
-EXPOSE 8008
 CMD ["/opt/ozwcp/dockercmd.sh"]
