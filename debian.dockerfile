@@ -58,6 +58,7 @@ cp ozwcp cp.html cp.js openzwavetinyicon.png README /opt/ozwcp && \
 cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
+chmod +x /opt/ozwcp/dockercmd.sh && \
 ###########################################################################################
 # Clean up
 rm -rf /usr/local/src/ && \

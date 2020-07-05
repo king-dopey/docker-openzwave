@@ -71,6 +71,7 @@ ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
 rm -rf /usr/local/lib/python3.8/site-packages/python_openzwave/ozw_config && \
 ln -s /etc/openzwave /usr/local/lib/python2.7/dist-packages/python_openzwave/ozw_config && \
+chmod +x /opt/ozwcp/dockercmd.sh && \
 ###########################################################################################
 # Clean up
 rm -rf /usr/local/src/ && \
