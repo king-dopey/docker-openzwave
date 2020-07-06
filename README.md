@@ -13,7 +13,7 @@ debian/ubuntu latest for pytho2/python3 with python-openzwave in git flavor and 
  - All versions are availables as tags in the format distro_pythonVersion : debian_python2, debian_python3, ubuntu_python2 and ubuntu_python3 (*Default)
  
 ## Example run command
-docker run -p 8008:8008 --device=/dev/ttyUSB0 -e DEVICES=/dev/ttyUSB0 -e PORT=8008 -e CONFIG=/etc/openzwave -v /myzwaveconfigpath/options.xml:/etc/openzwave/options.xml dheaps/openzwave:pyozw_ubuntu
+docker run -p 8008:8008 --device=/dev/ttyUSB0 -e DEVICES=/dev/ttyUSB0 -e PORT=8008 -e CONFIG=/etc/openzwave -v /myzwaveconfigpath/options.xml:/etc/openzwave/options.xml dheaps/openzwave:ubuntu_ozwcp
  - --device tells docker to give the container access that the the specific device; in this case, the ZWave USB stick. Please adjust according to your configuration
  - DEVICES instructs the startup script to explicitly give the unprivelgeed user running the container access to the device listed. Can contain a semicolon delimited list of devices.
  - PORT can change the default port (don't forget to also modify the -p parameter)
