@@ -41,7 +41,8 @@ apt-get -y update && apt-get dist-upgrade -y && apt-get -y install \
 	libmicrohttpd-dev \
 	gnutls-bin libgnutls28-dev \
 	pkg-config \
-	tzdata && \
+	tzdata \
+	cython3 && \
 #Clean up
 apt-get autoremove -y && apt-get clean && \
 #Install deps from pip
@@ -71,7 +72,7 @@ chmod +x /opt/ozwcp/dockercmd.sh && \
 # Clean up
 cd / && \
 rm -rf /usr/local/src/ && \
-apt-get remove make git wget g++ pkg-config -y && apt-get autoremove -y && apt-get clean && \
+apt-get remove cython3 make git wget g++ pkg-config -y && apt-get autoremove -y && apt-get clean && \
 rm -rf /root/.[!.]* && rm -rf /root/* && rm -rf /tmp/* && rm -rf /tmp/.[!.]*
 
 ###########################################################################################
