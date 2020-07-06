@@ -59,6 +59,7 @@ ln -s /etc/openzwave /opt/ozwcp/config && \
 chmod +x /opt/ozwcp/dockercmd.sh && \
 ###########################################################################################
 # Clean up
+cd / && \
 rm -rf /usr/local/src/ && \
 apt remove make git wget g++ pkg-config -y && apt autoremove -y && apt clean
 

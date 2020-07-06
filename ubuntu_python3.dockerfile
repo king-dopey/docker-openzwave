@@ -26,7 +26,7 @@ RUN adduser ozw_user && \
 mkdir -p /usr/local/src/ && \
 ##########################################################################################
 # Initial prerequisites
-apt -y update && apt dist-upgrade -y && apt -y install \
+apt-get -y update && apt-get dist-upgrade -y && apt-get -y install \
 	g++ \
 	python3-all python3-dev python3-pip \
 	libbz2-dev \
@@ -43,12 +43,12 @@ apt -y update && apt dist-upgrade -y && apt -y install \
 	pkg-config \
 	tzdata && \
 #Clean up
-apt autoremove -y && apt clean && \
+apt-get autoremove -y && apt-get clean && \
 #Install deps from pip
 pip3 install 'PyDispatcher>=2.0.5' six 'urwid>=1.1.1' pyserial && \
 ##########################################################################################
 # Install python_openzwave with embed sources, shared module fails
-pip3 install python_openzwave && \
+pip3 install python_openzwave --install-option="--flavor=git" && \
 ##########################################################################################
 # Install open-zwave-controlpanel
 cd /usr/local/src/ && \
@@ -69,8 +69,10 @@ ln -s /etc/openzwave /usr/local/lib/python3.8/dist-packages/python_openzwave/ozw
 chmod +x /opt/ozwcp/dockercmd.sh && \
 ##########################################################################################
 # Clean up
+cd / && \
 rm -rf /usr/local/src/ && \
-apt remove make git wget g++ pkg-config -y && apt autoremove -y && apt clean
+apt-get remove make git wget g++ pkg-config -y && apt-get autoremove -y && apt-get clean && \
+rm -rf /root/.[!.]* && rm -rf /root/* && rm -rf /tmp/* && rm -rf /tmp/.[!.]*
 
 ##########################################################################################
 WORKDIR /opt/ozwcp/
