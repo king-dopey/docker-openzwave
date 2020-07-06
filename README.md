@@ -4,9 +4,9 @@ Dockerfiles for various OpenZwave images (forked to build more recent versions o
 The default (latest) tag is ubuntu_python3, which utilizes the git flavor of OpenZWave, as these images are intended to be used to test new OpenZWave features and/or the administation of features, of which the home automation applicaiton in use hasn't impmenented. For a "stable" experience, using prebuilt packages and CentOS 7 the tag centos7_ozwcp is available.  
 
 ## Open ZWave Control Panel Only
-centos7_ozwcp : centos7 image with ozw-controlpanel, no python. This uses prebuilt OpenZWave packges from http://mirror.my-ho.st/Downloads/OpenZWave/CentOS_CentOS-7/x86_64/
-debian_ozwcp : debian image with ozw-controlpanel, no python. This use the git (bleeding edge) flavor of OpenZWave 
-ubuntu_ozwcp: ubuntu image with ozw-controlpanel, no python. This use the git (bleeding edge) flavor of OpenZWave. This is the smallest image avaialbe, but adding python (below) does not require much more space.
+ - centos7_ozwcp : centos7 image with ozw-controlpanel, no python. This uses prebuilt OpenZWave packges from http://mirror.my-ho.st/Downloads/OpenZWave/CentOS_CentOS-7/x86_64/
+ - debian_ozwcp : debian image with ozw-controlpanel, no python. This use the git (bleeding edge) flavor of OpenZWave 
+ - ubuntu_ozwcp: ubuntu image with ozw-controlpanel, no python. This use the git (bleeding edge) flavor of OpenZWave. This is the smallest image avaialbe, but adding python (below) does not require much more space.
 
 ## python-openzwave with Open ZWave Control Panel
 debian/ubuntu latest for pytho2/python3 with python-openzwave in git flavor and ozw-controlpanel.
