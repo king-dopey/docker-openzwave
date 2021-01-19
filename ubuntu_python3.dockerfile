@@ -64,8 +64,8 @@ cp ozwcp cp.html cp.js openzwavetinyicon.png README /opt/ozwcp && \
 cp -r ../open-zwave/config/ /etc/openzwave && \
 ln -s /opt/ozwcp/ozwcp /usr/local/bin/ozwcp && \
 ln -s /etc/openzwave /opt/ozwcp/config && \
-rm -rf /usr/local/lib/python3.8/dist-packages/python_openzwave/ozw_config && \
-ln -s /etc/openzwave /usr/local/lib/python3.8/dist-packages/python_openzwave/ozw_config && \
+rm -rf /usr/local/lib/python$(python3 --version | tail -c +8 | head -c 3)/dist-packages/python_openzwave/ozw_config && \
+ln -s /etc/openzwave /usr/local/lib/python$(python3 --version | tail -c +8 | head -c 3)/dist-packages/python_openzwave/ozw_config && \
 chmod +x /opt/ozwcp/dockercmd.sh && \
 ##########################################################################################
 # Clean up
